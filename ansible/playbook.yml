@@ -1,0 +1,11 @@
+---
+- hosts: all
+  remote_user: "{{ system_user }}"
+  roles:
+    - core
+
+- hosts: dev
+  remote_user: "{{ system_user }}"
+  roles:
+    - { role: golang, become: yes }
+    - { role: nginx-rtmp, become: yes }
