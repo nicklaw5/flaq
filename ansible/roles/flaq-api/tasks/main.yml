@@ -1,0 +1,37 @@
+---
+- name: Make the {{ system_user }} user the owner of $GOPATH
+  become: yes
+  file:
+    path: "{{ ansible_env.HOME}}/go"
+    owner: "{{ system_user }}"
+    group: "{{ system_user }}"
+    state: directory
+    recurse: yes
+
+- name: Import Flaq API dependencies
+  command: /usr/local/go/bin/go get ./...
+  args:
+    chdir: "{{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq"
+
+- name: Build the Flaq API application
+  command: /usr/local/go/bin/go build -o flaq
+  args:
+    chdir: "{{ ansible_env.HOME }}/go/src/github.com/nicklaw5/flaq"
+    creates: "{{ ansible_env.HOME }}/go/src/github.com/nicklaw5/flaq/flaq"
+
+- name: Create Flaq API service
+  become: yes
+  template:
+    src: flaq-api.service
+    dest: /etc/systemd/system/flaq-api.service
+    owner: root
+    group: root
+    mode: 0664
+
+- name: Make sure Flaq API is running
+  become: yes
+  systemd: name=flaq-api state=started daemon_reload=yes
+
+- name: Make sure services enabled to start on boot
+  become: yes
+  systemd: name=flaq-api enabled=yes masked=no

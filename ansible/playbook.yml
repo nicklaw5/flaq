@@ -7,5 +7,5 @@
 - hosts: dev
   remote_user: "{{ system_user }}"
   roles:
-    - { role: golang, become: yes }
+    - { role: flaq-api }
     - { role: nginx-rtmp, become: yes }

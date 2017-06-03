@@ -1,3 +1,6 @@
+# Flaq
+flaq
+
 # Ansible
 ansible/playbook.retry
 
@@ -6,4 +9,5 @@ ansible/roles/golang/*
 
 # Vagrant
 .vagrant/*
+.nfs*
 ubuntu-xenial-16.04-cloudimg-console.log
