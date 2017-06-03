@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Live Stream Test</title>
+        <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+        <script src="https://unpkg.com/video.js/dist/video.js"></script>
+        <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+    </head>
+    <body>
+        <video id=live-stream width=960 height=540 class="video-js vjs-default-skin" controls>
+            <source src="http://dev.flaq.com/live/devstream/index.m3u8" type="application/x-mpegURL">
+        </video>
+        <script>
+        var player = videojs('live-stream');
+        player.play();
+        </script>
+    </body>
+</html>
