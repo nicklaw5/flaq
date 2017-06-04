@@ -1,4 +1,4 @@
-# flaq
+# flaq *(working title)*
 
 ## Requirements
 
@@ -26,9 +26,6 @@ $ sudo ufw allow from 192.168.43.0/24
 
 # Fire up the VM
 $ vagrant up # takes roughly 5 mins, so grab a coffee
-
-# Show application commands
-# $ ./flaq
 ```
 
 ### OBS Setup
@@ -38,11 +35,17 @@ To start streaming to the server from OBS, follow these steps:
 1. With OBS running, click on ***Settings***
 2. Select ***Stream*** from the left-hand menu
 3. Change ***Stream Type*** to ***Custom Streaming Server***
-4. In the ***URL*** field, copy and past the following: `rtmp://dev.flaq.com/app`
+4. In the ***URL*** field, copy and past the following: `rtmp://dev.flaq.live/app`
 5. In the ***Stream key*** field, copy and past the following: `DevStreamKey1`
 6. Click ***Apply*** and ***OK*** to save the changes
 7. Select ***Start Streaming*** to start streaming to the server
 
 ## Documentation
+
+The documentation for this repository can be found in the [docs](docs) folder.
+
+## Third-party Documentation
+
+Information and documentation for other third-party packages that are used in this repository are listed below:
 
 - [nginx-rtmp wiki](https://github.com/arut/nginx-rtmp-module/wiki)
