@@ -5,7 +5,7 @@
 - Virtual Box
 - Vagrant
 - Vagrant Host Manager
-- Ansible (v2.2 or higher)
+- Ansible (v2.3.1 or higher)
 
 ## Development Environment
 
