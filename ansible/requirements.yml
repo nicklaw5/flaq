@@ -1,3 +1,9 @@
 ---
 - name: golang
   src: joshualund.golang
+
+- name: nginx
+  src: https://github.com/nicklaw5/nginx
+
+- name: ANXS.perl
+  src: https://github.com/ANXS/perl

@@ -1,0 +1,4 @@
+---
+is_dev: yes
+system_user: ubuntu
+api_domain: dev-api.flaq.live

@@ -1,0 +1,4 @@
+---
+is_dev: yes
+system_user: ubuntu
+web_domain: dev.flaq.live

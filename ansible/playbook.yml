@@ -4,8 +4,17 @@
   roles:
     - core
 
-- hosts: dev
+# - hosts: web
+#   remote_user: "{{ system_user }}"
+#   roles:
+#     - { role: flaq-web }
+
+- hosts: api
   remote_user: "{{ system_user }}"
   roles:
-    - { role: flaq-api }
-    - { role: nginx-rtmp, become: yes }
+    - flaq-api
+
+- hosts: ingest
+  remote_user: "{{ system_user }}"
+  roles:
+    - nginx-rtmp

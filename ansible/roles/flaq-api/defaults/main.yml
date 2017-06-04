@@ -1,0 +1,2 @@
+---
+flaq_api_directory: "{{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq"

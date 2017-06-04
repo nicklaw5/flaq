@@ -5,9 +5,11 @@ flaq
 ansible/playbook.retry
 
 # Ansible Galaxy Roles
-ansible/roles/golang/*
+ansible/roles/golang
+ansible/roles/nginx
+ansible/roles/ANXS.*
 
 # Vagrant
-.vagrant/*
 .nfs*
+.vagrant
 ubuntu-xenial-16.04-cloudimg-console.log

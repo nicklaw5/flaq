@@ -1,0 +1,14 @@
+---
+rtmp_hls_path: /var/www/live
+
+nginx_multi_accept: "off"
+nginx_gzip: "off"
+nginx_buffers: "off"
+nginx_tcp_nopush: "off"
+nginx_client_body_timeout: "60"
+nginx_client_header_timeout: "60"
+nginx_keepalive_timeout: "65"
+nginx_send_timeout: "60"
+nginx_source_modules_included:
+  http_ssl_module: "--with-http_ssl_module"
+  nginx_rtmp_module: "--add-module=/tmp/nginx-rtmp-module-{{nginx_rtmp_version}}"

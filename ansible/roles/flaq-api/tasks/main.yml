@@ -8,16 +8,23 @@
     state: directory
     recurse: yes
 
+- name: Checkout nicklaw5/flaq
+  git:
+    repo: ssh://git@github.com/nicklaw5/flaq.git
+    dest: "{{ flaq_api_directory }}"
+    accept_hostkey: yes
+  when: is_prod is defined and is_prod
+
 - name: Import Flaq API dependencies
   command: /usr/local/go/bin/go get ./...
   args:
-    chdir: "{{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq"
+    chdir: "{{ flaq_api_directory }}"
 
 - name: Build the Flaq API application
   command: /usr/local/go/bin/go build -o flaq
   args:
-    chdir: "{{ ansible_env.HOME }}/go/src/github.com/nicklaw5/flaq"
-    creates: "{{ ansible_env.HOME }}/go/src/github.com/nicklaw5/flaq/flaq"
+    chdir: "{{ flaq_api_directory }}"
+    creates: "{{ flaq_api_directory }}/flaq"
 
 - name: Create Flaq API service
   become: yes
@@ -28,10 +35,8 @@
     group: root
     mode: 0664
 
-- name: Make sure Flaq API is running
+  # See ansible/ansible-modules-core#3764 for reasons
+  # as to why this fails to enable (TLDR; its broken)
+- name: Make sure Flaq API is started
   become: yes
-  systemd: name=flaq-api state=started daemon_reload=yes
-
-- name: Make sure services enabled to start on boot
-  become: yes
-  systemd: name=flaq-api enabled=yes masked=no
+  systemd: name=flaq-api state=started enabled=yes daemon_reload=yes

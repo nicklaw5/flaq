@@ -1,4 +1,4 @@
 ---
 - name: reload nginx
   become: yes
-  systemd: name=nginx enabled=yes state=reloaded daemon_reload=yes
+  service: name=nginx state=reloaded

@@ -1,0 +1,2 @@
+---
+login_root: "{{ ansible_env.HOME }}/go/src/github.com/nicklaw5/flaq"

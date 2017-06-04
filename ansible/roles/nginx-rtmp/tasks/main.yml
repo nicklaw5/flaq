@@ -1,48 +1,35 @@
 ---
 - name: Install nginx-rtmp dependencies
+  become: yes
   apt: pkg={{ item }} state=present
   with_items:
-    - build-essential
     - ffmpeg
-    - libpcre3
-    - libpcre3-dev
-    - libssl-dev
 
-- name: Create build directory
-  file: path={{ build_directory }} state=directory
-
-- name: Download & unpack latest nginx-rtmp
-  unarchive:
-    src: https://github.com/arut/nginx-rtmp-module/archive/v{{ rtmp_version }}.tar.gz
-    dest: "{{ build_directory }}"
-    remote_src: True
-    creates: "{{ build_directory }}/nginx-rtmp-module-{{ rtmp_version }}"
-
-- name: Download & unpack nginx source
-  unarchive:
-    src: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
-    dest: "{{ build_directory }}"
-    remote_src: True
-    creates: "{{ build_directory }}/nginx-{{ nginx_version }}"
-
-- name: Build nginx with nginx-rtmp
-  command: "{{ item }}"
-  args:
-    chdir: "{{ build_directory }}/nginx-{{ nginx_version }}"
-    creates: /usr/local/nginx/sbin/nginx
-  with_items:
-    - "./configure --with-http_ssl_module --add-module={{ build_directory }}/nginx-rtmp-module-{{ rtmp_version }}"
-    - sudo make
-    - sudo make install
-
-- name: Configure nginx and nginx-rtmp
-  template: src=nginx.conf dest=/usr/local/nginx/conf/nginx.conf
-
-- name: Configure nginx systemd service
+- name: Add rtmp publishing configuration
+  become: yes
   template:
-    src: nginx.service
-    dest: /lib/systemd/system/nginx.service
-    owner: root
-    group: root
-    mode: 0664
+    src: rtmp.conf
+    dest: /etc/nginx/rtmp.conf
+
+- name: Enable rtmp publishing
+  become: yes
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    state: present
+    regexp: include /etc/nginx/rtmp.conf;
+    line: include /etc/nginx/rtmp.conf;
+  notify: reload nginx
+
+- name: Add rtmp playback configuration
+  become: yes
+  template:
+    src: ingest.flaq.live
+    dest: /etc/nginx/sites-available/ingest.flaq.live
+
+- name: Enable rtmp playback
+  become: yes
+  file:
+    src: /etc/nginx/sites-available/ingest.flaq.live
+    dest: /etc/nginx/sites-enabled/ingest.flaq.live
+    state: link
   notify: reload nginx

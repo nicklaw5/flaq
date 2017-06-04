@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
-    vb.memory = 4096
+    vb.memory = 2048
     vb.cpus = 2
   end
 
@@ -19,7 +19,11 @@ Vagrant.configure("2") do |config|
   config.hostmanager.include_offline = true
 
   config.vm.define "flaq-dev" do |node|
-    node.vm.hostname = "dev.flaq.com"
+    node.vm.hostname = "dev.flaq.live"
+  end
+
+  config.vm.provision "bootstrap", type: "shell" do |s|
+    s.inline = "apt-get install python -y"
   end
 
   config.vm.provision "ansible" do |ansible|

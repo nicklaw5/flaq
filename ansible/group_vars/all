@@ -1,4 +1,11 @@
 ---
-system_user: ubuntu
-app_domain: flaq.com
-login_root: "{{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq"
+system_user: flaq
+app_domain: flaq.live
+root_login: "{{ ansible_env.HOME }}"
+
+nginx_source_version: "1.13.1"
+nginx_www_dir: "/var/www"
+nginx_worker_processes: 1
+nginx_default_enable: false
+nginx_source_modules_included:
+  http_ssl_module: "--with-http_ssl_module"

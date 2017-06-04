@@ -11,6 +11,7 @@ import (
 const (
 	DevStream     = "devstream"
 	DevStreamKey1 = "DevStreamKey1"
+	HTTPPort      = 3000
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	r.HandleFunc("/streams/on-publish", onPublish).Methods("POST")
 	r.HandleFunc("/streams/on-publish-done", onPublishDone).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(":3000", r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", HTTPPort), r))
 }
 
 func onPublish(res http.ResponseWriter, req *http.Request) {

@@ -1,0 +1,30 @@
+server {
+    listen 80;
+    root {{ rtmp_hls_path }};
+
+    # Let streams be delivered via XHR.
+    add_header Access-Control-Allow-Origin "*";
+    add_header Access-Control-Allow-Methods "GET";
+
+    location ~ ^/live/(.+\.ts)$ {
+        types {
+            video/mp2t ts;
+        }
+
+        alias {{ rtmp_hls_path }}/$1;
+
+        # Let the MPEG-TS video chunks be cacheable
+        expires max;
+    }
+
+    location ~ ^/live/(.+\.m3u8)$ {
+        types {
+            application/vnd.apple.mpegurl m3u8;
+        }
+
+        alias {{ rtmp_hls_path }}/$1;
+
+        # The M3U8 playlists should not be cacheable
+        expires -1d;
+    }
+}
