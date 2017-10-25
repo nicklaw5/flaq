@@ -40,10 +40,6 @@ To start streaming to the server from OBS, follow these steps:
 6. Click ***Apply*** and ***OK*** to save the changes
 7. Select ***Start Streaming*** to start streaming to the server
 
-## Documentation
-
-The documentation for this repository can be found in the [docs](docs) folder.
-
 ## Third-party Documentation
 
 Information and documentation for other third-party packages that are used in this repository are listed below:
