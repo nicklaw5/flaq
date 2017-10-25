@@ -4,7 +4,10 @@ server {
 
     # Let streams be delivered via XHR.
     add_header Access-Control-Allow-Origin "*";
-    add_header Access-Control-Allow-Methods "GET";
+    add_header Access-Control-Allow-Methods "GET, OPTIONS";
+
+    error_log /var/log/nginx/ingest.flaq.live.error.log;
+    access_log /var/log/nginx/ingest.flaq.live.access.log;
 
     location ~ ^/live/(.+\.ts)$ {
         types {
