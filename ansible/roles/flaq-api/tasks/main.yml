@@ -35,8 +35,15 @@
     group: root
     mode: 0664
 
-  # See ansible/ansible-modules-core#3764 for reasons
-  # as to why this fails to enable (TLDR; its broken)
-- name: Make sure Flaq API is started
+- name: Ensure Flaq API is enabled
   become: yes
-  systemd: name=flaq-api state=started enabled=yes daemon_reload=yes
+  service:
+    name: flaq-api
+    enabled: yes
+    use: service
+
+- name: Ensure Flaq API is started
+  become: yes
+  service:
+    name: flaq-api.service
+    state: started

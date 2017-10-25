@@ -1,8 +1,0 @@
----
-- name: start flaq-api
-  become: yes
-  systemd: name=flaq-api state=started daemon_reload=yes
-
-- name: restart flaq-api
-  become: yes
-  systemd: name=flaq-api state=restarted daemon_reload=yes
