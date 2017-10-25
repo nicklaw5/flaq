@@ -1,4 +1,4 @@
-# flaq *(working title)*
+# flaq
 
 ## Requirements
 
