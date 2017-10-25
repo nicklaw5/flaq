@@ -15,17 +15,17 @@ Follow the below commands to configure and start the streaming server.
 
 ```bash
 # Clone the repository
-$ git clone git@github.com:nicklaw5/flaq.git && cd flaq
+$ git clone git@github.com:nicklaw5/flaq.git
+$ cd flaq
 
-# Install Ansible dependencies
+# Install Ansible Galaxy dependencies
 $ ansible-galaxy install -r ansible/requirements.yml --roles-path=ansible/roles
 
-# Add firewall exception for our VM. Otherwise NFS access
-# to the VM is unavailable.
+# (Ubuntu users only) Add firewall exception for our VM. Otherwise NFS access to the VM is unavailable.
 $ sudo ufw allow from 192.168.43.0/24
 
-# Fire up the VM
-$ vagrant up # takes roughly 5 mins, so grab a coffee
+# Fire up the VM (grab a coffee - this takes roughly 5-10 mins)
+$ vagrant up
 ```
 
 ### OBS Setup
@@ -39,6 +39,8 @@ To start streaming to the server from OBS, follow these steps:
 5. In the ***Stream key*** field, copy and past the following: `DevStreamKey1`
 6. Click ***Apply*** and ***OK*** to save the changes
 7. Select ***Start Streaming*** to start streaming to the server
+
+Once you've started streaming, you can watch the stream by opening the `index.html` file in the root of this project in Firefox (other browsers are not supported yet)
 
 ## Third-party Documentation
 
