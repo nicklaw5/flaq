@@ -9,6 +9,10 @@ ansible/roles/golang
 ansible/roles/nginx
 ansible/roles/ANXS.*
 
+# NPM/Yarn
+node_modules
+yarn-error.log
+
 # Vagrant
 .nfs*
 .vagrant

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Flaq Live Stream Demo</title>
+        <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+        <script src="https://unpkg.com/video.js/dist/video.js"></script>
+        <script src="https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js"></script>
+    </head>
+    <body>
+        <video id="live-stream" width="960" height="540" class="video-js vjs-default-skin" controls></video>
+        <script>
+            var player = videojs('live-stream');
+
+            player.src({
+                src: 'http://dev.flaq.live/live/devstream/index.m3u8',
+                type: 'application/x-mpegURL',
+            });
+
+            player.play();
+        </script>
+    </body>
+</html>

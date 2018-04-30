@@ -24,6 +24,9 @@ $ ansible-galaxy install -r ansible/requirements.yml --roles-path=ansible/roles
 # (Ubuntu users only) Add firewall exception for our VM. Otherwise NFS access to the VM is unavailable.
 $ sudo ufw allow from 192.168.43.0/24
 
+# Install the client's NPM dependencies
+$ yarn -cwd ./client install
+
 # Fire up the VM (grab a coffee - this takes roughly 5-10 mins)
 $ vagrant up
 ```
@@ -40,7 +43,7 @@ To start streaming to the server from OBS, follow these steps:
 6. Click ***Apply*** and ***OK*** to save the changes
 7. Select ***Start Streaming*** to start streaming to the server
 
-Once you've started streaming, you can watch the stream by opening the `index.html` file in the root of this project in Firefox (other browsers are not supported yet)
+Once you've started streaming, you can watch the stream by running `yarn -cwd ./client start` and opening your browser to http://localhost:8888/.
 
 ## Third-party Documentation
 
