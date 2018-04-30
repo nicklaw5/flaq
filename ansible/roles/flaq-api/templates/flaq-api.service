@@ -10,7 +10,7 @@ ExecStop=/bin/kill -2 $MAINPID
 RestartSec=5
 StartLimitInterval=30s
 StartLimitBurst=3
-Restart=on-failure
+Restart=always
 
 [Install]
 WantedBy=multi-user.target

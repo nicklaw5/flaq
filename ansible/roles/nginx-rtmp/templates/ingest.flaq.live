@@ -1,33 +1,42 @@
 server {
     listen 80;
-    root {{ rtmp_hls_path }};
+    root {{ rtmp_live_path }};
 
     # Let streams be delivered via XHR.
-    add_header Access-Control-Allow-Origin "*";
+    add_header Access-Control-Allow-Origin "*" always;
     add_header Access-Control-Allow-Methods "GET, OPTIONS";
 
     error_log /var/log/nginx/ingest.flaq.live.error.log;
     access_log /var/log/nginx/ingest.flaq.live.access.log;
-
-    location ~ ^/live/(.+\.ts)$ {
-        types {
-            video/mp2t ts;
-        }
-
-        alias {{ rtmp_hls_path }}/$1;
-
-        # Let the MPEG-TS video chunks be cacheable
-        expires max;
-    }
 
     location ~ ^/live/(.+\.m3u8)$ {
         types {
             application/vnd.apple.mpegurl m3u8;
         }
 
-        alias {{ rtmp_hls_path }}/$1;
+        alias {{ rtmp_live_path }}/$1;
 
         # The M3U8 playlists should not be cacheable
         expires -1d;
+    }
+
+    location ~ ^/live/(.+\.ts)$ {
+        types {
+            video/mp2t ts;
+        }
+
+        alias {{ rtmp_live_path }}/$1;
+
+        # Let the MPEG-TS video chunks be cacheable
+        expires max;
+    }
+
+    # Stats in user readable format
+    location /stats {
+        rtmp_stat all;
+
+        allow all;
+        # allow 127.0.0.1;
+        # deny all;
     }
 }

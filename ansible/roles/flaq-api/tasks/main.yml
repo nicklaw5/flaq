@@ -29,21 +29,20 @@
 - name: Create Flaq API service
   become: yes
   template:
-    src: flaq-api.service
-    dest: /etc/systemd/system/flaq-api.service
+    src: "{{ flaq_api_service }}"
+    dest: /etc/systemd/system/{{ flaq_api_service }}
     owner: root
     group: root
     mode: 0664
 
 - name: Ensure Flaq API is enabled
   become: yes
-  service:
-    name: flaq-api
-    enabled: yes
-    use: service
+  shell: |
+    systemctl enable {{ flaq_api_service }}
+    exit 0
 
 - name: Ensure Flaq API is started
   become: yes
-  service:
-    name: flaq-api.service
-    state: started
+  shell: |
+    systemctl start {{ flaq_api_service }}
+    exit 0

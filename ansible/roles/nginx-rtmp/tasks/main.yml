@@ -1,9 +1,23 @@
 ---
 - name: Install nginx-rtmp dependencies
   become: yes
-  apt: pkg={{ item }} state=present
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - ffmpeg
+
+- name: Ensure live, record and thumbnail direcories are created
+  become: yes
+  file:
+    path: "{{ item }}"
+    owner: www-data
+    group: www-data
+    state: directory
+  with_items:
+    - "{{ rtmp_live_path }}"
+    - "{{ rtmp_record_path }}"
+    - "{{ rtmp_thumbnail_path }}"
 
 - name: Add rtmp publishing configuration
   become: yes

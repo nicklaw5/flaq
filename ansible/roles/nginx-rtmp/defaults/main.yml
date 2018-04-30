@@ -1,4 +1,8 @@
 ---
-rtmp_version: 1.1.11
+rtmp_version: 1.2.1
+rtmp_live_path: /var/www/live
+rtmp_record_path: /var/www/record
+rtmp_thumbnail_path: /var/www/thumbnail
+
 nginx_version: 1.13.1
 build_directory: "{{ ansible_env.HOME}}/build"

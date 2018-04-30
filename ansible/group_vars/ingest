@@ -1,6 +1,4 @@
 ---
-rtmp_hls_path: /var/www/live
-
 nginx_multi_accept: "off"
 nginx_gzip: "off"
 nginx_buffers: "off"

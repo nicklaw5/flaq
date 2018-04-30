@@ -1,2 +1,3 @@
 ---
+flaq_api_service: flaq-api.service
 flaq_api_directory: "{{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq"
