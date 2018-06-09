@@ -1,9 +1,3 @@
-[web:children]
-web-dev
-
-[web-dev]
-dev.flaq.live
-
 [api:children]
 api-dev
 

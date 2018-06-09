@@ -4,11 +4,6 @@
   roles:
     - core
 
-# - hosts: web
-#   remote_user: "{{ system_user }}"
-#   roles:
-#     - { role: flaq-web }
-
 - hosts: api
   remote_user: "{{ system_user }}"
   roles:

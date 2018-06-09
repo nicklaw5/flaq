@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", ip: "192.168.43.43"
 
-  config.vm.synced_folder ".", "/home/ubuntu/go/src/github.com/nicklaw5/flaq", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
+  config.vm.synced_folder ".", "/home/vagrant/go/src/github.com/nicklaw5/flaq", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
