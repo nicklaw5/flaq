@@ -3,7 +3,7 @@ system_user: vagrant
 app_domain: flaq.live
 login_root: "{{ ansible_env.HOME }}"
 
-nginx_source_version: "1.13.1"
+nginx_source_version: "1.13.12"
 nginx_www_dir: "/var/www"
 nginx_worker_processes: 1
 nginx_default_enable: false

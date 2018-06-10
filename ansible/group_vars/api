@@ -1,2 +1,6 @@
 ---
 login_root: "{{ ansible_env.HOME }}/go/src/github.com/nicklaw5/flaq"
+
+go_tarball: "go1.10.3.linux-amd64.tar.gz"
+go_tarball_checksum: "sha256:fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035"
+go_version_target: "go version go1.10.3 linux/amd64"
