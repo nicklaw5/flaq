@@ -10,4 +10,4 @@ app.get('/', (request, response) => {
 
 app.listen(port)
 
-console.log("server started on port " + port)
+console.log("server started on port http://localhost:" + port)
