@@ -1,19 +1,19 @@
 # Flaq
-flaq
+bin/
 
 # Ansible
 ansible/playbook.retry
 
 # Ansible Galaxy Roles
-ansible/roles/golang
-ansible/roles/nginx
-ansible/roles/ANXS.*
+ansible/roles/ANXS.*/
+ansible/roles/golang/
+ansible/roles/nginx/
 
 # NPM/Yarn
-node_modules
+node_modules/
 yarn-error.log
 
 # Vagrant
 .nfs*
-.vagrant
+.vagrant/
 ubuntu-xenial-16.04-cloudimg-console.log

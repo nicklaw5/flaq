@@ -11,26 +11,21 @@
 - name: Checkout nicklaw5/flaq
   git:
     repo: ssh://git@github.com/nicklaw5/flaq.git
-    dest: "{{ flaq_api_directory }}"
+    dest: "{{ flaq_directory }}"
     accept_hostkey: yes
   when: is_prod is defined and is_prod
 
-- name: Import Flaq API dependencies
-  command: /usr/local/go/bin/go get ./...
-  args:
-    chdir: "{{ flaq_api_directory }}"
-
 - name: Build the Flaq API application
-  command: /usr/local/go/bin/go build -o flaq
+  command: "/usr/local/go/bin/go build -o {{ flaq_bin_directory }}/flaq"
   args:
     chdir: "{{ flaq_api_directory }}"
-    creates: "{{ flaq_api_directory }}/flaq"
+    creates: "{{ flaq_bin_directory }}/flaq"
 
 - name: Create Flaq API service
   become: yes
   template:
-    src: "{{ flaq_api_service }}"
-    dest: /etc/systemd/system/{{ flaq_api_service }}
+    src: "{{ flaq_service_name }}"
+    dest: /etc/systemd/system/{{ flaq_service_name }}
     owner: root
     group: root
     mode: 0664
@@ -38,11 +33,11 @@
 - name: Ensure Flaq API is enabled
   become: yes
   shell: |
-    systemctl enable {{ flaq_api_service }}
+    systemctl enable {{ flaq_service_name }}
     exit 0
 
 - name: Ensure Flaq API is started
   become: yes
   shell: |
-    systemctl start {{ flaq_api_service }}
+    systemctl start {{ flaq_service_name }}
     exit 0

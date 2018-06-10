@@ -4,8 +4,8 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-WorkingDirectory={{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq
-ExecStart={{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq/flaq
+WorkingDirectory={{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq/bin
+ExecStart={{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq/bin/flaq
 ExecStop=/bin/kill -2 $MAINPID
 RestartSec=5
 StartLimitInterval=30s

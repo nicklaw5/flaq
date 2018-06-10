@@ -1,3 +1,5 @@
 ---
-flaq_api_service: flaq-api.service
-flaq_api_directory: "{{ ansible_env.HOME}}/go/src/github.com/nicklaw5/flaq"
+flaq_service_name: flaq-api.service
+flaq_directory: "{{ ansible_env.HOME }}/go/src/github.com/nicklaw5/flaq"
+flaq_api_directory: "{{ flaq_directory }}/api"
+flaq_bin_directory: "{{ flaq_directory }}/bin"
