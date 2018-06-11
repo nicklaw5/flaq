@@ -5,7 +5,6 @@
   "repository": "git@github.com:nicklaw5/flaq.git",
   "author": "Nick Law <nick@nicholaslaw.com.au>",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "express": "^4.16.3"
   }

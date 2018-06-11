@@ -2,9 +2,10 @@
 
 ## Requirements
 
+- Yarn or NPM
 - Virtual Box
 - Vagrant
-- Vagrant Host Manager
+- Vagrant Host Manager Plugin
 - Ansible (v2.3.1 or higher)
 
 ## Development Environment
@@ -15,8 +16,7 @@ Follow the below commands to configure and start the streaming server.
 
 ```bash
 # Clone the repository
-$ git clone git@github.com:nicklaw5/flaq.git
-$ cd flaq
+$ git clone git@github.com:nicklaw5/flaq.git && cd ./flaq
 
 # Install Ansible Galaxy dependencies
 $ ansible-galaxy install -r ansible/requirements.yml --roles-path=ansible/roles
@@ -36,12 +36,12 @@ $ vagrant up
 To start streaming to the server from OBS, follow these steps:
 
 1. With OBS running, click on ***Settings***
-2. Select ***Stream*** from the left-hand menu
-3. Change ***Stream Type*** to ***Custom Streaming Server***
-4. In the ***URL*** field, copy and past the following: `rtmp://dev.flaq.live/app`
-5. In the ***Stream key*** field, copy and past the following: `DevStreamKey1`
-6. Click ***Apply*** and ***OK*** to save the changes
-7. Select ***Start Streaming*** to start streaming to the server
+1. Select ***Stream*** from the left-hand menu
+1. Change ***Stream Type*** to ***Custom Streaming Server***
+1. In the ***URL*** field, copy and past the following: `rtmp://dev.flaq.live/app`
+1. In the ***Stream key*** field, copy and past the following: `DevStreamKey1`
+1. Click ***Apply*** and ***OK*** to save the changes
+1. Select ***Start Streaming*** to start streaming to the server
 
 Once you've started streaming, you can watch the stream by running `yarn --cwd=./client start` and opening your browser to http://localhost:8888/.
 
